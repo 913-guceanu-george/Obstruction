@@ -8,7 +8,7 @@ class Board:
     """
     def __init__(self, size):
         if size <= 6:
-            BoardException("Size of board is not enough")
+            raise BoardException("Size of board is not enough")
         self.__size = size
         self.__bd = list()
         for i in range(self.__size):
@@ -17,8 +17,13 @@ class Board:
                 self.__bd[i].append('- ')
 
     def setPosition(self, position:tuple, player:int):
+        """
+            Setter, throws error in case of wrong input.
+        """
         if position[0] < 0 or position[0] >6:
-            BoardException(""
+            raise BoardException("Invalid positions")
+        if position[1] < 0 or position[1] > 6:
+            raise BoardException("Invalid positions")
         self.__bd[position[0]-1][position[1]-1]=player
     
 

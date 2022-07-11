@@ -1,7 +1,7 @@
 from Board.board import Board
 
 def __main__():
-    b = Board(6)
+    b = Board(5)
     b.setPosition((2, 3), 1)
     print(b.__str__())
 
