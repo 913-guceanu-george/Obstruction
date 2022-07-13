@@ -1,2 +1,2 @@
-class BoardException(Exception):
+class BoardException(BaseException):
     pass

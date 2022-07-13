@@ -16,7 +16,19 @@ class Board:
             for j in range(self.__size):
                 self.__bd[i].append('- ')
 
-    def setPosition(self, position:tuple, player:int):
+    def getSize(self):
+        """
+            Getter function
+        """
+        return self.__size
+
+    def getPosition(self, position:tuple):
+        """
+            Getter function
+        """
+        return self.__bd[position[0]][position[1]]
+
+    def setPosition(self, position:tuple, player):
         """
             Setter, throws error in case of wrong input.
         """
@@ -26,7 +38,7 @@ class Board:
             raise BoardException("Invalid positions")
         if position[1] < 1 or position[1] > 6:
             raise BoardException("Invalid positions")
-        if self.__bd[x][y] != 'x ':
+        if self.__bd[x][y] != 'x ' and self.__bd[x][y] != "O " and self.__bd[x][y] != "Y ":
             self.__bd[x][y] = str(player) + " "
             
             # Checking corner cases
@@ -107,6 +119,12 @@ class Board:
         """
         final_str = ""
         for i in range(self.__size):
+            if i == 0:
+                final_str += "  "
+                for k in range(self.__size):
+                    final_str += str(k+1) + " "
+                final_str += "\n"
+            final_str += str(i+1) + " "
             for j in range(self.__size):
                 final_str=final_str+str(self.__bd[i][j])
             final_str+='\n'
