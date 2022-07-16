@@ -35,9 +35,9 @@ class Board:
         """
         x = position[0] - 1
         y = position[1] - 1
-        if position[0] < 1 or position[0] > 6:
+        if position[0] < 1 or position[0] > self.__size:
             raise BoardException("Invalid positions")
-        if position[1] < 1 or position[1] > 6:
+        if position[1] < 1 or position[1] > self.__size:
             raise BoardException("Invalid positions")
         if self.__bd[x][y] != 'x ' and self.__bd[x][y] != "O " and self.__bd[x][y] != "Y ":
             self.__bd[x][y] = str(player) + " "

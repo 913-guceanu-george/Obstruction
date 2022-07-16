@@ -55,14 +55,15 @@ class UI:
                 self.__game.put_piece(position)
             except BoardException as be:
                 print(be)
-                
 
             # Checking if there is a winner
             if self.__game.check_win() == 0:
-                print("Player 1 won!")
+                print(self.__game.__str__())
+                print("Player 2 won!")
                 return
             elif self.__game.check_win() == 1:
-                print("Player 2 won!")
+                print(self.__game.__str__())
+                print("Player 1 won!")
                 return
             else:
                 continue
