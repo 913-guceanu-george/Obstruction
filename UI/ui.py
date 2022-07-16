@@ -5,7 +5,7 @@ from Game.game import Game, BoardException
 class UI:
 
     def __init__(self):
-        # Initializing our game with none, as no size of the board has been given
+        # Initializing our game with none, as no size of the board has been read
         self.__game = None
 
     def welcome(self):
