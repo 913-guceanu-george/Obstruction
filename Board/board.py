@@ -6,7 +6,8 @@ class Board:
         The board for the obstruction game, size of the board is given.
         Size must be greater or equal to 6, because otherwise none of the players can move.
     """
-    def __init__(self, size:int):
+
+    def __init__(self, size: int):
         if size < 6:
             raise BoardException("Size of board is not enough")
         self.__size = size
@@ -22,53 +23,53 @@ class Board:
         """
         return self.__size
 
-    def getPosition(self, position:tuple):
+    def getPosition(self, position: tuple):
         """
             Getter function
         """
         return self.__bd[position[0]][position[1]]
 
-    def setPosition(self, position:tuple, player):
+    def setPosition(self, position: tuple, player):
         """
             Setter, throws error in case of wrong input.
         """
         x = position[0] - 1
         y = position[1] - 1
-        if position[0] < 1 or position[0] >6:
+        if position[0] < 1 or position[0] > 6:
             raise BoardException("Invalid positions")
         if position[1] < 1 or position[1] > 6:
             raise BoardException("Invalid positions")
         if self.__bd[x][y] != 'x ' and self.__bd[x][y] != "O " and self.__bd[x][y] != "Y ":
             self.__bd[x][y] = str(player) + " "
-            
+
             # Checking corner cases
 
-            if x == 0 and y == 0: # Top left corner
+            if x == 0 and y == 0:  # Top left corner
                 self.__bd[x+1][y] = "x "
                 self.__bd[x+1][y+1] = "x "
                 self.__bd[x][y+1] = "x "
                 return
-            
-            if x == 0 and y == self.__size - 1: # Top right corner
+
+            if x == 0 and y == self.__size - 1:  # Top right corner
                 self.__bd[x][y-1] = "x "
                 self.__bd[x+1][y] = "x "
                 self.__bd[x+1][y-1] = "x "
                 return
 
-            if x == self.__size - 1 and y == 0: # Bottom left corner
+            if x == self.__size - 1 and y == 0:  # Bottom left corner
                 self.__bd[x-1][y] = "x "
                 self.__bd[x][y+1] = "x "
                 self.__bd[x-1][y+1] = "x "
                 return
 
-            if x == self.__size - 1 and y == self.__size - 1: # Bottom right corner
+            if x == self.__size - 1 and y == self.__size - 1:  # Bottom right corner
                 self.__bd[x-1][y-1] = "x "
                 self.__bd[x-1][y] = "x "
                 self.__bd[x][y-1] = "x "
                 return
 
             # Checking rail cases
-            if x == 0 and y != 0 and y != self.__size - 1: # Top rail
+            if x == 0 and y != 0 and y != self.__size - 1:  # Top rail
                 self.__bd[x][y-1] = "x "
                 self.__bd[x+1][y-1] = "x "
                 self.__bd[x+1][y] = "x "
@@ -76,7 +77,7 @@ class Board:
                 self.__bd[x][y+1] = "x "
                 return
 
-            if x == self.__size - 1 and y != 0 and y != self.__size - 1: # Bottom rail
+            if x == self.__size - 1 and y != 0 and y != self.__size - 1:  # Bottom rail
                 self.__bd[x][y-1] = "x "
                 self.__bd[x-1][y] = "x "
                 self.__bd[x-1][y+1] = "x "
@@ -84,15 +85,15 @@ class Board:
                 self.__bd[x][y+1] = "x "
                 return
 
-            if y == 0 and x != 0 and x != self.__size - 1: # Left rail
+            if y == 0 and x != 0 and x != self.__size - 1:  # Left rail
                 self.__bd[x-1][y] = "x "
                 self.__bd[x][y+1] = "x "
                 self.__bd[x-1][y+1] = "x "
                 self.__bd[x+1][y+1] = "x "
-                self.__bd[x+1][y] == "x "
+                self.__bd[x+1][y] = "x "
                 return
 
-            if y == self.__size - 1 and x != 0 and x!= self.__size - 1: # Right rail
+            if y == self.__size - 1 and x != 0 and x != self.__size - 1:  # Right rail
                 self.__bd[x-1][y] = "x "
                 self.__bd[x+1][y] = "x "
                 self.__bd[x-1][y-1] = "x "
@@ -126,6 +127,6 @@ class Board:
                 final_str += "\n"
             final_str += str(i+1) + " "
             for j in range(self.__size):
-                final_str=final_str+str(self.__bd[i][j])
-            final_str+='\n'
+                final_str = final_str+str(self.__bd[i][j])
+            final_str += '\n'
         return final_str
